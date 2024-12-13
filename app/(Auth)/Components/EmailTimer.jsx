@@ -25,7 +25,7 @@ function EmailTimer() {
         try {
             axios.defaults.withCredentials = true;
             axios.defaults.withXSRFToken = true;
-            const response = await axios.get('http://localhost:8000/email/verification-notification', {
+            const response = await axios.get('/Auth/email/verification-notification', {
                 headers: {
                     'Accept': 'application/json',
                 },

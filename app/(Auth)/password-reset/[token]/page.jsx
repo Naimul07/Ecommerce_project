@@ -25,8 +25,8 @@ function ResetPassword() {
     try {
       axios.defaults.withCredentials = true;
       axios.defaults.withXSRFToken = true;
-      await axios.get('http://localhost:8000/sanctum/csrf-cookie');
-      const response = await axios.post('http://localhost:8000/reset-password', {
+      await axios.get('/Auth/sanctum/csrf-cookie');
+      const response = await axios.post('/Auth/reset-password', {
         token,
         email,
         password: data.password,

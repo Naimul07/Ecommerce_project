@@ -13,8 +13,8 @@ function EmailOtp() {
         try {
             axios.defaults.withCredentials = true;
             axios.defaults.withXSRFToken = true;
-            await axios.get('http://localhost:8000/sanctum/csrf-cookie');
-            const response = await axios.post('http://localhost:8000/verify-email', {
+            await axios.get('/Auth/sanctum/csrf-cookie');
+            const response = await axios.post('/Auth/verify-email', {
                 otp: data.otp
             }, {
                 headers: {

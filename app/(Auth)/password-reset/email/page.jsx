@@ -19,8 +19,8 @@ function ForgetPassResent() {
     try {
       axios.defaults.withCredentials = true;
       axios.defaults.withXSRFToken = true;
-      await axios.get('http://localhost:8000/sanctum/csrf-cookie');
-      const response = await axios.post('http://localhost:8000/forgot-password',
+      await axios.get('/Auth/sanctum/csrf-cookie');
+      const response = await axios.post('/Auth/forgot-password',
         {
           email: data.email,
         },
