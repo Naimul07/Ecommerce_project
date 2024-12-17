@@ -46,7 +46,7 @@ function EmailTimer() {
                     Resend otp
                 </span>
             ) : (
-                <span className="text-gray-400">
+                <span className="text-gray-400 hover:border-b">
                     Resend OTP in {timer} seconds
                 </span>
             )}

@@ -4,12 +4,16 @@ import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function EmailOtp() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [error, setError] = useState("");
+    const [loading,setLoading]=useState(false);
     const router = useRouter();
     async function onSubmit(data) {
+        setLoading(true);
+
         try {
             axios.defaults.withCredentials = true;
             axios.defaults.withXSRFToken = true;
@@ -29,6 +33,9 @@ function EmailOtp() {
             toast.error(err.response.data.message);
             setError(err.response.data.message);
         }
+        finally{
+            setLoading(false);
+        }
     }
     return (
         <>
@@ -43,7 +50,7 @@ function EmailOtp() {
                 })} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-1" />
 
                 {errors.otp && <span className="text-red-500 text-xs mt-1 input-error">{errors.otp.message}</span>}
-                <button className="text-white my-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center">Submit</button>
+                <button className="text-white my-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center">{loading ? (<ClipLoader color="#ffffff" loading={loading} size={20} />) : ('Submit')}</button>
             </form>
             {error && <span className="text-red-500  my-2 input-error block">{error} </span>}
         </>
