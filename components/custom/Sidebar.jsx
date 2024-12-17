@@ -19,11 +19,8 @@ const Sidebar = () => {
   const [open, setOpen] = useState(null);
   function handleClick(index) {
     setOpen((prev) => prev === index ? null : index);
-    // console.log(index);
   }
-  /*  useEffect(() => {
-     console.log("Updated open state:", open);
-   }, [open]); */
+  
   return (
     <>
       <div className="">
