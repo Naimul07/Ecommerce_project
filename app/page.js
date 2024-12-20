@@ -1,3 +1,4 @@
+import FlashProduct from "@/components/custom/FlashProduct";
 import Hero from "@/components/custom/Hero";
 import Product from "@/components/custom/Product";
 import axios from "axios";
@@ -7,9 +8,9 @@ export default async function Home() {
   
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-4">
       <Hero/>
-      <Product/>
+      <FlashProduct/>
     </div>
   );
 }

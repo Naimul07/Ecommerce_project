@@ -5,8 +5,8 @@ import { FaRegHeart } from "react-icons/fa";
 const Navbar = () => {
     return (
         <>
-            <div className="border-2 border-black p-2">
-                <nav className="container mx-auto py-2 px-2 sm:px-0 flex justify-between items-center">
+            <div className="border-b p-2">
+                <nav className="container mx-auto py-2 px-2 sm:px-0 xl:px-4 max-xl:px-8 flex justify-between items-center">
                     <div className="font-bold">
                         <Link href='/'>Exclusive</Link>
                     </div>
