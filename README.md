@@ -12,72 +12,37 @@
 I'm a full-stack developer with specialized expertise in React.js and Laravel, combining deep technical knowledge with a passion for building robust and scalable applications.
 
 ## Project Description
-This is the frontend of a Ecommerce website built using Next js, React. The backend API is developed with Laravel.
+This is the frontend for an e-commerce platform built using **Next.js** and React. The backend API is powered by **Laravel** to handle robust business logic, user authentication, and secure payment processing.
 
 
-## Features
+## ✨ Features
 
-- User Authentication (Sign up, Login, Email verification,Reset Password)
-- Add to cart
-- 
--  
-- 
-- D
-- Product Reviews
-- User profile(where one can see their post and comments and replies and also can delete and edit them)
+- **User Authentication**: Sign up, Login, Email Verification, Reset Password
+- **Browse Products**: View products with filters and categories
+- **Product Details**: View detailed information about each product
+- **Shopping Cart**: Add, remove, and manage items in the cart
+- **Wishlist**: Save products to view or purchase later
+- **Checkout**: Place orders with secure payment integration (Stripe/SSLCommerz)
+- **User Profile**: Manage account details, view order history
+- **Product Reviews**: Add and view reviews for purchased products
+- **Responsive Design**: Fully mobile-friendly and accessible interface
 
 
+## 🛠️ Tech Stack
+### **Frontend**
+- **Next.js**: React framework for server-side rendering and static site generation
+- **React**: Library for building the user interface
+- **TanStack Query**: Efficient data fetching, caching, and server-state management
+- **Zustand**: Lightweight state management for global app state
+- **Axios**: HTTP client for communicating with the backend API
+- **Tailwind CSS**: Utility-first framework for modern, responsive styling
+- **React Hook Form**: Easy and performant form handling and validation
 
-## Tech Stack
-**Next js:** JavaScript Framework for building the user interface
+### **Backend**
+- **Laravel**: PHP framework for building secure APIs and handling business logic
 
-**React:** JavaScript library for building the user interface
-
-**TanStack Query:** For data fetching, caching, and server-state management.
-
-**Zustand:** For state management
-
-**Axios:** For making HTTP requests to the backend 
-
-**Tailwind CSS:** For styling the components 
-
-**React Hook Form:** For form validation and handling
-
-**Backend** Laravel is used to develop Api.
-
-## Screenshots
-
-HomePage
-
-![HomePage]()
-
-Single Post
-
-![Single Post]()
-
-Search
-
-![Search]()
-
-Searchpage
-
-![Search Page]()
-
-Comment
-
-![Comment]()
-
-Profile
-
-![Profile](https://github.com/Naimul07/Project_picture/blob/main/Profile.jpg?raw=true)
-
-User Post,Comment(Edit,Del)
-
-![User Post,Comment{Edit,Del}](https://github.com/Naimul07/Project_picture/blob/main/Post_del.jpg?raw=true)
-![Create Post](https://github.com/Naimul07/Project_picture/blob/main/Create.jpg?raw=true)
 
 ## Run Locally
-
 
 ```bash
   npm install
