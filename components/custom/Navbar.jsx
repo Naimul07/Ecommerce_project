@@ -10,7 +10,7 @@ const Navbar = () => {
                     <div className="font-bold">
                         <Link href='/'>Exclusive</Link>
                     </div>
-                    <ul className="hidden sm:flex sm:space-x-4">
+                    <ul className="hidden md:flex md:space-x-4">
                         <li>
                             <Link href='/'>Home</Link>
                         </li>
