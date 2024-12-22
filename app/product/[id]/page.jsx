@@ -23,7 +23,7 @@ const page = async ({ params }) => {
           <ProductId product={product} />
         </div>
       </div>
-      <div className='flex items-center justify-center m-4'>
+      <div className='flex items-center justify-center my-10'>
         <h1 className='font-bold text-2xl'>Simillar Product</h1>
       </div>
       <div>

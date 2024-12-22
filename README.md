@@ -32,7 +32,7 @@ This is the frontend for an e-commerce platform built using **Next.js** and Reac
 ### **Frontend**
 - **Next.js**: React framework for server-side rendering and static site generation
 - **React**: Library for building the user interface
-- **TanStack Query**: Efficient data fetching, caching, and server-state management
+- **TanStack Query**: Efficient data fetching, caching.
 - **Zustand**: Lightweight state management for global app state
 - **Axios**: HTTP client for communicating with the backend API
 - **Tailwind CSS**: Utility-first framework for modern, responsive styling
