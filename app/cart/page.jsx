@@ -1,119 +1,142 @@
-// pages/cart.js
-'use client'
+'use client';
+import useCart from "@/store/cartStore";
+import Image from "next/image";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { FaTrash } from "react-icons/fa";
 
 const CartPage = () => {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: "LCD Monitor", price: 650, quantity: 1, image: "/monitor.jpg" },
-    { id: 2, name: "H1 Gamepad", price: 550, quantity: 2, image: "/gamepad.jpg" },
-  ]);
+  const cart = useCart((state) => state.cart);
+  const updateCart = useCart((state) => state.updateCart);
+  const deleteCart = useCart((state) => state.deleteCart);
   const [coupon, setCoupon] = useState("");
 
-  const handleQuantityChange = (id, quantity) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, quantity: parseInt(quantity) } : item
-      )
-    );
+  const handleQuantityChange = (item, quantity) => {
+    const parsedQuantity = parseInt(quantity, 10);
+    if (parsedQuantity > 0) {
+      item.quantity = parsedQuantity;
+      updateCart(item);
+    }
   };
 
-  const subtotal = cartItems.reduce(
+  const handleRemoveItem = (id) => {
+    deleteCart(id);
+    toast.success("Item deleted successfully");
+  };
+
+  const subtotal = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
 
   return (
-    <div className="container mx-auto my-10 px-4 lg:px-0">
-      <h1 className="text-2xl font-semibold mb-4">Cart</h1>
+    <div className="container mx-auto my-10 px-4 sm:px-6 lg:px-8">
+      <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-8 text-center">
+        Your Shopping Cart
+      </h1>
 
-      <div className="overflow-x-auto">
-        <table className="table-auto w-full text-left border-collapse">
-          <thead>
-            <tr className="border-b text-gray-600">
-              <th className="py-4">Product</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Subtotal</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cartItems.map((item) => (
-              <tr key={item.id} className="border-b">
-                <td className="py-4 flex items-center space-x-4">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-16 h-16 object-cover rounded"
-                  />
-                  <span>{item.name}</span>
-                </td>
-                <td>${item.price}</td>
-                <td>
-                  <select
-                    value={item.quantity}
-                    onChange={(e) =>
-                      handleQuantityChange(item.id, e.target.value)
-                    }
-                    className="border rounded px-2 py-1"
-                  >
-                    {[...Array(10).keys()].map((_, index) => (
-                      <option key={index} value={index + 1}>
-                        {index + 1}
-                      </option>
-                    ))}
-                  </select>
-                </td>
-                <td>${item.price * item.quantity}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {cart.length > 0 ? (
+        <>
+          {/* Cart Items */}
+          <div className="bg-white shadow-md rounded-md overflow-hidden">
+            <div className="px-4 py-4 sm:px-6">
+              {cart.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex flex-col sm:flex-row items-center justify-between border-b py-4 space-y-4 sm:space-y-0"
+                >
+                  <div className="flex items-center space-x-4">
+                    <Image
+                      src="/image1.jpg"
+                      alt={item.name}
+                      height={50}
+                      width={50}
+                      className="rounded-md"
+                    />
+                    <div>
+                      <p className="text-lg font-medium text-gray-800">
+                        {item.name}
+                      </p>
+                      <p className="text-sm text-gray-500">${item.price}</p>
+                    </div>
+                  </div>
 
-      <div className="flex flex-col lg:flex-row justify-between mt-6">
-        <div className="flex space-x-4 mb-4 lg:mb-0">
-          <button className="border px-4 py-2 text-gray-600 hover:bg-gray-200 rounded">
-            Return To Shop
-          </button>
-          <button className="border px-4 py-2 text-gray-600 hover:bg-gray-200 rounded">
-            Update Cart
+                  <div className="flex items-center space-x-4">
+                    <select
+                      value={item.quantity}
+                      onChange={(e) =>
+                        handleQuantityChange(item, e.target.value)
+                      }
+                      className="border rounded-md px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    >
+                      {[...Array(10).keys()].map((_, index) => (
+                        <option key={index} value={index + 1}>
+                          {index + 1}
+                        </option>
+                      ))}
+                    </select>
+
+                    <p className="text-lg font-semibold text-gray-800">
+                      ${(item.price * item.quantity).toFixed(2)}
+                    </p>
+                    <button
+                      onClick={() => handleRemoveItem(item.id)}
+                      className="text-red-500 hover:text-red-700 flex items-center"
+                    >
+                      <FaTrash className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Summary Section */}
+          <div className="flex flex-col lg:flex-row justify-between mt-10 gap-6">
+            <div className="flex flex-col lg:w-1/2">
+              <input
+                type="text"
+                placeholder="Enter Coupon Code"
+                value={coupon}
+                onChange={(e) => setCoupon(e.target.value)}
+                className="border rounded-md px-4 py-3 w-full text-gray-700 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+              <button className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                Apply Coupon
+              </button>
+            </div>
+            <div className="bg-gray-100 shadow-md rounded-md p-6 lg:w-1/3">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+                Order Summary
+              </h2>
+              <div className="flex justify-between mb-4">
+                <p className="text-gray-600">Subtotal:</p>
+                <p className="text-gray-800 font-medium">
+                  ${subtotal.toFixed(2)}
+                </p>
+              </div>
+              <div className="flex justify-between mb-4">
+                <p className="text-gray-600">Shipping:</p>
+                <p className="text-gray-800 font-medium">Free</p>
+              </div>
+              <div className="flex justify-between font-semibold text-lg border-t pt-4">
+                <p>Total:</p>
+                <p>${subtotal.toFixed(2)}</p>
+              </div>
+              <button className="bg-green-500 text-white w-full py-3 mt-6 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400">
+                Proceed to Checkout
+              </button>
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="text-center">
+          <p className="text-gray-500 text-lg">Your cart is empty.</p>
+          <button className="mt-6 bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            Return to Shop
           </button>
         </div>
-
-        <div className="flex items-center space-x-4">
-          <input
-            type="text"
-            placeholder="Coupon Code"
-            value={coupon}
-            onChange={(e) => setCoupon(e.target.value)}
-            className="border px-4 py-2 rounded w-40"
-          />
-          <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">
-            Apply Coupon
-          </button>
-        </div>
-      </div>
-
-      <div className="mt-10 flex justify-end">
-        <div className="border p-6 rounded-lg w-full lg:w-1/3">
-          <h2 className="text-lg font-semibold mb-4">Cart Total</h2>
-          <div className="flex justify-between mb-2">
-            <span>Subtotal:</span>
-            <span>${subtotal}</span>
-          </div>
-          <div className="flex justify-between mb-2">
-            <span>Shipping:</span>
-            <span>Free</span>
-          </div>
-          <div className="flex justify-between font-semibold text-lg mb-4">
-            <span>Total:</span>
-            <span>${subtotal}</span>
-          </div>
-          <button className="bg-red-500 text-white w-full py-2 rounded hover:bg-red-700">
-            Proceed to checkout
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   );
 };
