@@ -24,7 +24,7 @@ const Footer = () => {
         </div>
 
 
-        <div>
+        {/* <div>
           <h2 className="font-semibold text-lg mb-4">Account</h2>
           <ul className="space-y-2">
             <li><a href="#" className="text-sm hover:text-blue-400">My Account</a></li>
@@ -33,10 +33,10 @@ const Footer = () => {
             <li><a href="#" className="text-sm hover:text-blue-400">Wishlist</a></li>
             <li><a href="#" className="text-sm hover:text-blue-400">Shop</a></li>
           </ul>
-        </div>
+        </div> */}
 
 
-        <div>
+        {/* <div>
           <h2 className="font-semibold text-lg mb-4">Quick Links</h2>
           <ul className="space-y-2">
             <li><a href="#" className="text-sm hover:text-blue-400">Privacy Policy</a></li>
@@ -44,16 +44,16 @@ const Footer = () => {
             <li><a href="#" className="text-sm hover:text-blue-400">FAQ</a></li>
             <li><a href="#" className="text-sm hover:text-blue-400">Contact</a></li>
           </ul>
-        </div>
+        </div> */}
 
-        <div>
+        {/* <div>
           <h2 className="font-semibold text-lg mb-4">Download App</h2>
           <p className="text-sm mb-4">Save $3 with App New User Only</p>
           <div className="flex space-x-2">
             <button className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition">App Store</button>
             <button className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition">Google Play</button>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
 
