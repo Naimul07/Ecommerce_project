@@ -1,10 +1,15 @@
 'use client'
 import { MdOutlineShoppingCart } from "react-icons/md";
 import useCart from "@/store/cartStore";
+import { useEffect, useState } from "react";
 
 const CartIcon = () => {
-    const cart = useCart((state) => state.cart);
+    const cartItems = useCart((state) => state.cart);
+    const [cart, setCart] = useState([]);
 
+    useEffect(() => {
+        setCart(cartItems);
+    }, [cartItems]);
     return (
         <>
             <div className="relative">

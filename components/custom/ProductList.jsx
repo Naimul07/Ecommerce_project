@@ -1,6 +1,7 @@
 'use client'
 import useCart from '@/store/cartStore';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { IoMdHeartEmpty } from "react-icons/io";
@@ -12,6 +13,8 @@ const ProductList = ({ products }) => {
     const cart = useCart((state) => state.cart);
     const [start, setStart] = useState(0);
     const [end, setEnd] = useState(4);
+    const router = useRouter();
+
     function handleCart(items) {
         const item = {
             id: items.id,
@@ -26,14 +29,14 @@ const ProductList = ({ products }) => {
             {
                 duration: 4000,
                 position: 'bottom-right',
-              
             }
-              
-            
         );
-
     }
-    console.log(cart);
+    function handleLink(id)
+    {
+        router.push(`/product/${id}`)
+    }
+    // console.log(cart);
     return (
         <>
             <div className='mt-3'>
@@ -41,15 +44,16 @@ const ProductList = ({ products }) => {
                     <div className='grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-4 gap-x-6 gap-y-10 mt-8 max-w-5xl mx-auto'>
                         {products &&
                             products.slice(start, end).map((item, index) => (
-                                <div key={index} className='group relative'>
+                                <div key={index} className='group relative hover:cursor-pointer' >
                                     <Image
                                         src="/image6.jpg"
                                         alt={item.name}
                                         width={250}
                                         height={250}
                                         className="rounded-md"
+                                        onClick={() => handleLink(item.id)}
                                     />
-                                    <div className='mt-2 flex justify-between'>
+                                    <div className='mt-2 flex justify-between' onClick={() => handleLink(item.id)}>
                                         <p className='text-gray-700 text-sm'>{item.name}</p>
                                         <p className='text-gray-500 text-sm'>$ {item.price}</p>
                                     </div>
@@ -65,11 +69,11 @@ const ProductList = ({ products }) => {
                         }
                     </div>
                     <div className='hidden lg:block'>
-                        <button  className='absolute top-1/2 bg-slate-200 rounded-full p-2 left-2 transform -translate-y-1/2'>
-                            <IoArrowBackOutline size={24}/>
+                        <button className='absolute top-1/2 bg-slate-200 rounded-full p-2 left-2 transform -translate-y-1/2'>
+                            <IoArrowBackOutline size={24} />
                         </button>
                         <button className='absolute top-1/2 bg-slate-200 rounded-full p-2 right-2 transform -translate-y-1/2'>
-                            <IoArrowForwardSharp size={24}/>
+                            <IoArrowForwardSharp size={24} />
                         </button>
                     </div>
                 </div>

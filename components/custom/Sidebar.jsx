@@ -31,7 +31,7 @@ const Sidebar = () => {
             <div>
               <div
                 className="flex justify-between items-center cursor-pointer p-2 bg-white rounded-lg hover:bg-gray-200 transition"
-                onClick={() => handleClick(index)}
+                onClick={() => handleClick(index)} onMouseEnter={()=>handleClick(index)}
               >
                 <span className="text-gray-800 font-medium flex items-center space-x-2">
                   <span>{category.icon}</span>

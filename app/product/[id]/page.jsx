@@ -14,7 +14,7 @@ const page = async ({ params }) => {
   const product = await res.json();
   // console.log(product);
   return (
-    <div className="my-10 container mx-auto px-4">
+    <div className="pt-16 container mx-auto px-4">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div>
           <ImageGallery images={product.images} mainImage={product.mainImage} />
