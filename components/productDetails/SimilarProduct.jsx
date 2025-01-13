@@ -9,9 +9,9 @@ const SimilarProduct = async ({ id }) => {
     <div>
       <div className='mt-3'>
         <div>
-          <div className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-10 mt-8 max-w-5xl mx-auto'>
+          <div className='grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 gap-x-6 gap-y-10 mt-8 max-w-5xl mx-auto'>
             {product &&
-              product.slice(0, 6).map((item, index) => (
+              product.slice(0, 4).map((item, index) => (
                 <div key={index} className='group relative'>
                   <Image
                     src="/image6.jpg"
@@ -28,16 +28,13 @@ const SimilarProduct = async ({ id }) => {
                     <button className='rounded-md border px-2 text-sm bg-blue-400 text-white mt-2 py-1 hover:bg-blue-600'>Add to cart</button>
                     <IoMdHeartEmpty size={24} className='hover:scale-110 transition-transform duration-150' />
                   </div>
-
-
-
                 </div>
               ))
             }
 
           </div>
           <div className='flex items-center justify-center'>
-            <button className='bg-red-500 px-3 py-2 md:px-6 rounded-md my-4 md:my-8 text-white hover:bg-red-600 transition-transform duration-75'>View all</button>
+            <button className='bg-slate-500 p-2 w-40 rounded-md my-10 text-white hover:bg-slate-600 transition-transform duration-75'>View all</button>
 
           </div>
         </div>

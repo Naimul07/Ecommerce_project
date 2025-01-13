@@ -2,7 +2,7 @@
 
 const loading = () => {
   return (
-    <div className="pt-16">loading</div>
+    <div className="pt-16 min-h-screen">loading</div>
   )
 }
 

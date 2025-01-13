@@ -24,14 +24,14 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="lg:w-60 xl:w-72 rounded-lg shadow-sm">
+    <div className="md:w-full xl:w-72 rounded-lg shadow-sm">
       <ul>
         {categories.map((category, index) => (
           <li key={index} className="relative">
             <div>
               <div
-                className="flex justify-between items-center cursor-pointer p-2 bg-white rounded-lg hover:bg-gray-200 transition"
-                onClick={() => handleClick(index)} onMouseEnter={()=>handleClick(index)}
+                className="flex justify-between items-center text-sm lg:text-base cursor-pointer p-2 bg-white rounded-lg hover:bg-gray-200 transition"
+                 onMouseEnter={()=>handleClick(index)}
               >
                 <span className="text-gray-800 font-medium flex items-center space-x-2">
                   <span>{category.icon}</span>
@@ -46,7 +46,7 @@ const Sidebar = () => {
                 </span>
               </div>
               {open === index && (
-                <div className="absolute left-full top-0 ml-2 bg-white shadow-lg rounded-lg z-10 w-48 animate-fadeIn">
+                <div className="absolute left-full text-sm lg:text-base top-0 ml-2 bg-white shadow-lg rounded-lg z-10 w-48 animate-fadeIn">
                   <ul className="py-2">
                     {category.subCategories.map((subcategory, subIndex) => (
                       <li key={subIndex}>

@@ -15,8 +15,8 @@ const page = async ({ params }) => {
   // console.log(product);
   return (
     <div className="pt-16 container mx-auto px-4">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className='flex justify-center items-center w-full mb-6'>
           <ImageGallery images={product.images} mainImage={product.mainImage} />
         </div>
         <div>
@@ -24,7 +24,7 @@ const page = async ({ params }) => {
         </div>
       </div>
       <div className='flex items-center justify-center my-10'>
-        <h1 className='font-bold text-2xl'>Simillar Product</h1>
+        <h1 className='font-bold text-base md:text-2xl'>Simillar Product</h1>
       </div>
       <div>
         <SimilarProduct id={product.subcategory_id} />

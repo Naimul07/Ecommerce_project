@@ -1,13 +1,47 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { IoMdHeartEmpty } from "react-icons/io";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import useCart from "@/store/cartStore";
+import toast from "react-hot-toast";
 
 const ProductId = ({ product }) => {
-  // console.log(product)
+  const cart = useCart((state) => state.cart)
+  const addCart = useCart((state) => state.addCart);
   const [sizet, setSizet] = useState("");
   const [color, setColor] = useState("");
-  const [count, setCount] = useState(2);
+  const [count, setCount] = useState(1);
+  function updateStore() {
+    useCart.persist.rehydrate();
+  }
+  useEffect(() => {
+    document.addEventListener("visibilitychange", updateStore);
+    window.addEventListener("focus", updateStore);
+
+    return () => {
+      document.removeEventListener("visibilitychange", updateStore);
+      window.removeEventListener("focus", updateStore);
+    }
+  }, []);
+  
+  function addToCart(items) {
+    const item = {
+      id: items.id,
+      name: items.name,
+      subcategory_id: items.subcategory_id,
+      price: items.price,
+      description: items.description,
+      quantity: count,
+    }
+    addCart(item);
+    toast.success('item added to cart');
+  }
 
   const increment = () => setCount(count + 1);
   const decrement = () => setCount(count > 0 ? count - 1 : 0);
@@ -19,27 +53,35 @@ const ProductId = ({ product }) => {
         <h2 className='font-semibold text-xl text-gray-800 my-2'>$ {product.price}</h2>
       </div>
       <div className='mb-4'>
-        <p className='text-sm text-gray-500'>{product?.description}</p>
+        {/* <p className='text-sm text-gray-500'>{product?.description}</p> */}
       </div>
       <hr />
       <div>
-        <div className="my-4">
-          <div className="flex items-center space-x-4">
-            <h4 className="text-sm font-medium ">Colours:</h4>
-            <span className="w-6 h-6 rounded-full bg-red-500 cursor-pointer border"></span>
-            <span className="w-6 h-6 rounded-full bg-gray-400 cursor-pointer border"></span>
-          </div>
+        <div className="my-6">
+          <h1 className="capitalize font-semibold my-2 text-lg">product description</h1>
+          <p className="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam temporibus dignissimos quos sequi molestias atque dolorum repellendus, quibusdam rem voluptatum, nobis eum nisi a! Voluptas adipisci fuga praesentium aliquid unde.</p>
+        </div>
+
+        <div>
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger>More Info</AccordionTrigger>
+              <AccordionContent>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi adipisci corrupti ipsum eius recusandae, possimus veritatis maiores quasi ab doloremque laboriosam mollitia ratione distinctio nesciunt reprehenderit ducimus nihil fugiat? Quos!
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+
         </div>
       </div>
       <div>
         <div className='my-4'>
-
           <div className='flex items-center space-x-3 '>
             <h2 className=''>Size :</h2>
             {
               ['sm', 'md', 'lg', 'xl', 'xxl'].map((size, index) => (
 
-                <button key={index} className={`border-2 px-3 rounded-md  hover:bg-red-400 hover:border-white hover:text-white ${sizet === size ? 'bg-red-500 text-white' : ''}`} onClick={() => setSizet(size)}>{size}</button>
+                <button key={index} className={`border-2 border-slate-400 px-3 rounded-md text-slate-500  hover:bg-slate-500 hover:border-white hover:text-white ${sizet === size ? 'bg-slate-500 text-white' : ''}`} onClick={() => setSizet(size)}>{size}</button>
 
 
               ))
@@ -62,12 +104,24 @@ const ProductId = ({ product }) => {
             +
           </button>
         </div>
-        <div className="mx-4">
-          <button className="border px-2 py-1 text-white bg-red-500 hover:bg-red-700">Add to cart</button>
+
+      </div>
+
+
+
+      <div className="flex space-x-16 items-center my-10">
+        <div>
+          <button className="border px-4 rounded-lg py-2 text-white bg-slate-500 hover:bg-slate-700" onClick={() => addToCart(product)}>Add to cart</button>
         </div>
         <div><IoMdHeartEmpty size={28} /> </div>
       </div>
+
+
+
+
+
     </div>
+
 
   )
 }

@@ -18,24 +18,49 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { CiShoppingCart } from "react-icons/ci";
 
 const CartPage = () => {
-  const cartItems = useCart((state) => state.cart);
+  const cartItem = useCart((state) => state.cart);
   const [cart, setCart] = useState([]);
   const updateCart = useCart((state) => state.updateCart);
   const deleteCart = useCart((state) => state.deleteCart);
   const [coupon, setCoupon] = useState("");
   const totalprice = cart.reduce((total, product) => total + product.price * product.quantity, 0)
   const ShipingFee = 40; /* Math.floor(Math.random()*100); */
-  function updateCartValue(product, value) {
-    product.quantity = value;
-    updateCart(product);
+  
+  function updateStore() {
+    useCart.persist.rehydrate();
+    setCart(cartItem);
+  }
+  useEffect(() => {
+    document.addEventListener("visibilitychange", updateStore);
+    window.addEventListener("focus", updateStore);
+
+    return () => {
+      document.removeEventListener("visibilitychange", updateStore);
+      window.removeEventListener("focus", updateStore);
+    }
+  }, []);
+
+  useEffect(()=>{
+    setCart(cartItem);
+  },[cartItem]); 
+  function updateCartValue(items, value) {
+    const item = {
+      id: items.id,
+      name: items.name,
+      subcategory_id: items.subcategory_id,
+      price: items.price,
+      description: items.description,
+      quantity: value,
+  }
+    updateCart(item);
+    toast.success(`${item.name} quantity updated to ${value}`);
   }
   function handleDelete(id) {
     deleteCart(id);
     toast.success('item removed from cart');
   }
-  useEffect(() => {
-    setCart(cartItems);
-  }, [cartItems]);
+ 
+ 
 
   return (
     <div className="mt-14 container mx-auto min-h-screen">
@@ -46,7 +71,7 @@ const CartPage = () => {
           {cart.length < 1 && (
             <div className="flex flex-col items-center justify-center h-full rounded-lg">
               <div className="">
-              <CiShoppingCart size={78}/>
+                <CiShoppingCart size={78} />
               </div>
               <h1 className="text-2xl font-bold text-gray-800 mb-2">Your Cart is Empty</h1>
               <p className="text-gray-600 mb-4 text-center">
@@ -74,7 +99,7 @@ const CartPage = () => {
                   <tr key={product.id} className="border-b border-gray-300 hover:bg-slate-50 text-sm">
 
                     <td className="py-6">
-                      <div className="flex items-center justify-center gap-6">
+                      <div className="flex items-center justify-center gap-1 sm:gap-6">
                         <Image src='/image6.jpg' alt={product.name} width={40} height={40} className="rounded-md" />
                         <div className="">{product.name} </div>
 

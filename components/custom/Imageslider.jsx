@@ -43,7 +43,7 @@ const Imageslider = () => {
           {
             slides.map((slide, index) => (
               <div className={`relative ${currentIndex === index ? "block" : "hidden"}`} key={index}>
-                <div className="h-[360px] sm:h-[480px] md:h-[480px] lg:h-[360px] bg-black text-white flex items-center justify-center" style={
+                <div className="h-[360px] sm:h-[480px] md:h-[380px] lg:h-[360px] bg-black text-white flex items-center justify-center" style={
                   {
                     backgroundImage: `url(${slide.image})`,
                     backgroundSize: 'cover',

@@ -3,12 +3,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import useCart from '@/store/cartStore';
 import Image from 'next/image';
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const Page = () => {
   const cartItems = useCart((state) => state.cart);
-  const [cart,setCart] = useState([]);
+  const [cart, setCart] = useState([]);
   const { register, handleSubmit, formState: { errors } } = useForm();
   const totalprice = cart.reduce((total, product) => total + product.price * product.quantity, 0)
   const ShipingFee = 40; /* Math.floor(Math.random()*100); */
@@ -17,9 +17,9 @@ const Page = () => {
     //performing data submission
     //after successful submission redirect to payment post
   }
-  useEffect(()=>{
+  useEffect(() => {
     setCart(cartItems);
-  },[cartItems]);
+  }, [cartItems]);
 
   return (
     <div className='pt-14 container mx-auto mb-10'>
@@ -128,7 +128,7 @@ const Page = () => {
               cart.map((item) => (
                 <div className='flex justify-between my-2 border-b p-2 items-center hover:bg-slate-100' key={item.id}>
                   <div className='border rounded-lg'>
-                    <Image src="/image6.jpg" width={40} height={40} alt='image'/>
+                    <Image src="/image6.jpg" width={40} height={40} alt='image' />
                   </div>
                   <div className='text-sm'>{item.name}</div>
                   <div className='flex flex-col text-xs space-y-1 items-center'>
