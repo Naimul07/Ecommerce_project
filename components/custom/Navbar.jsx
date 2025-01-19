@@ -5,6 +5,13 @@ import CartIcon from "./CartIcon";
 
 import { CiSearch } from "react-icons/ci";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+
+import { Button } from "@/components/ui/button"
+import {
+    HoverCard,
+    HoverCardContent,
+    HoverCardTrigger,
+} from "@/components/ui/hover-card"
 const Navbar = () => {
     return (
         <>
@@ -41,6 +48,7 @@ const Navbar = () => {
                         </li>
                         <li>
                             <Link href='/cart'> <CartIcon /> </Link>
+                            
                         </li>
                         <li>
 

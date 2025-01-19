@@ -1,9 +1,9 @@
-'use client'
+'use client';
 import { Skeleton } from '@/components/ui/skeleton'
 const loading = () => {
     return (
         <div className='pt-16 container mx-auto px-4'>
-            <div className='grid grid-cols-1 md:grid-cols-2 md:gap-8 min-h-screen'>
+            <div className='grid grid-cols-1 md:grid-cols-2 space-x-10 min-h-screen'>
                 <div className='flex gap-4'>
                     <div className="flex flex-col gap-2">
                         <Skeleton className="h-[100px] w-[100px] my-2" />

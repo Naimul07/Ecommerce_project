@@ -9,6 +9,8 @@ import { useForm } from 'react-hook-form';
 const Page = () => {
   const cartItems = useCart((state) => state.cart);
   const [cart, setCart] = useState([]);
+  const [ad, setAd] = useState(true);
+  const [details, setDetails] = useState([]);
   const { register, handleSubmit, formState: { errors } } = useForm();
   const totalprice = cart.reduce((total, product) => total + product.price * product.quantity, 0)
   const ShipingFee = 40; /* Math.floor(Math.random()*100); */
@@ -16,21 +18,23 @@ const Page = () => {
   function onSubmit(data) {
     //performing data submission
     //after successful submission redirect to payment post
+    setAd(false);
+    setDetails(data);
   }
   useEffect(() => {
     setCart(cartItems);
   }, [cartItems]);
 
   return (
-    <div className='pt-14 container mx-auto mb-10'>
+    <div className='pt-14 container mx-auto mb-10 min-h-screen'>
       <div className='grid grid-cols-1 md:grid-cols-8'>
         <div className='md:col-span-6'>
           <div className='flex items-center justify-center pb-14'>
             <div className='bg-white rounded-lg p-6 w-full'>
               <h2 className='text-xl font-semibold mb-6 text-center'>Shipping Details</h2>
-              <form className='space-y-6' onSubmit={handleSubmit(onSubmit)}>
+              {ad && (<form className='space-y-6' onSubmit={handleSubmit(onSubmit)}>
                 {/* Address */}
-                <div className='grid grid-cols-1 sm:grid-cols-2 sm:gap-4'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
 
                   <div className='flex flex-col'>
                     <label htmlFor='address' className='block text-xs font-medium text-gray-800'>
@@ -42,7 +46,7 @@ const Page = () => {
                       type='text'
                       placeholder='Chalk bazar, rangpur'
                     />
-                    {errors.street && <span className="text-red-500 text-xs mt-1">{errors.street.message}</span>}
+                    {errors.street && <span className="text-red-500 text-xs">{errors.street.message}</span>}
                   </div>
 
                   {/* City */}
@@ -56,11 +60,9 @@ const Page = () => {
                       type='text'
                       placeholder='City Name'
                     />
-                    {errors.city && <span className="text-red-500 text-xs mt-1">{errors.city.message}</span>}
+                    {errors.city && <span className="text-red-500 text-xs">{errors.city.message}</span>}
                   </div>
-                </div>
-
-                <div className='grid grid-cols-1 sm:grid-cols-2 sm:gap-4'>
+                
                   {/* Postal Code */}
                   <div className='flex flex-col'>
                     <label htmlFor='postcode' className='block text-xs font-medium text-gray-800'>
@@ -72,7 +74,7 @@ const Page = () => {
                       type='text'
                       placeholder='1258'
                     />
-                    {errors.postcode && <span className="text-red-500 text-xs mt-1">{errors.postcode.message}</span>}
+                    {errors.postcode && <span className="text-red-500 text-xs">{errors.postcode.message}</span>}
                   </div>
 
                   {/* Country */}
@@ -86,7 +88,7 @@ const Page = () => {
                       type='text'
                       placeholder='Country'
                     />
-                    {errors.country && <span className="text-red-500 text-xs mt-1">{errors.country.message}</span>}
+                    {errors.country && <span className="text-red-500 text-xs">{errors.country.message}</span>}
                   </div>
                 </div>
                 {/* Submit Button */}
@@ -95,7 +97,37 @@ const Page = () => {
                     Submit
                   </Button>
                 </div>
-              </form>
+              </form>)}
+              <div>
+                {!ad && (
+                  <div className=' grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4'>
+                    <div>
+                      <h1 className='font-semibold text-sm'>Address</h1>
+                      <p className='text-slate-500'>{details.street}</p>
+                    </div>
+                    <div>
+                      <h1 className='font-semibold text-sm'>City</h1>
+                      <p className='text-slate-500'>{details.city}</p>
+                    </div>
+                    <div>
+                      <h1 className='font-semibold text-sm'>Postal code</h1>
+                      <p className='text-slate-500'>{details.postcode}</p>
+                    </div>
+                    <div>
+                      <h1 className='font-semibold text-sm'>Country</h1>
+                      <p className='text-slate-500'>{details.country}</p>
+                    </div>
+
+                  </div>
+                )}
+                {!ad && (
+                  <div className='mt-4'>
+                    <div>
+                      <Button>Proceed to payment</Button>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
