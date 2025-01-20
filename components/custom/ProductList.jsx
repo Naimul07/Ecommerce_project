@@ -1,95 +1,112 @@
-'use client'
+'use client';
 import useCart from '@/store/cartStore';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoArrowForwardSharp } from "react-icons/io5";
 import { IoArrowBackOutline } from "react-icons/io5";
+
 const ProductList = ({ products }) => {
-    // console.log(products);
     const addToCart = useCart((state) => state.addCart);
-    const cart = useCart((state) => state.cart);
-    const [start, setStart] = useState(1);
-    const [end, setEnd] = useState(5);
+    const [start, setStart] = useState(0);
+    const itemsPerPage = 4; // Show 4 items at a time
     const router = useRouter();
-    function handlePrev() {
-        setStart((prev) => prev === 1 ? prev : prev - 2);
-        setEnd((prev) => prev === 5 ? prev : prev - 2);
-    }
-    function handleNext() {
-        setStart((prev) => prev === 16 ? prev : prev + 2);
-        setEnd((prev) => prev === 20 ? prev : prev + 2);
-    }
-    function handleCart(items) {
-        const item = {
-            id: items.id,
-            name: items.name,
-            subcategory_id: items.subcategory_id,
-            price: items.price,
-            description: items.description,
+
+    const handlePrev = () => {
+        setStart((prev) => (prev === 0 ? prev : prev - 1));
+        // setEnd((prev) => (prev === 5 ? prev : prev - 1));
+    };
+
+    const handleNext = () => {
+        setStart((prev) => (prev === 12 ? prev : prev + 1));
+        // setEnd((prev) => (prev === 11 ? prev : prev + 1));
+    };
+
+    const handleCart = (item) => {
+        const newItem = {
+            id: item.id,
+            name: item.name,
+            subcategory_id: item.subcategory_id,
+            price: item.price,
+            description: item.description,
             quantity: 1,
-        }
-        addToCart(item);
-        toast.success(`${item.name} added to cart successfully`,
-            {
-                duration: 4000,
-                position: 'bottom-right',
-            }
-        );
-    }
-    function handleLink(id) {
-        router.push(`/product/${id}`)
-    }
-    // console.log(start, end);
+        };
+        addToCart(newItem);
+        toast.success(`${item.name} added to cart successfully`, {
+            duration: 4000,
+            position: 'bottom-right',
+        });
+    };
+
+    const handleLink = (item) => {
+        const queryString = new URLSearchParams(item).toString();
+        router.push(`/product/${item.id}?${queryString}`);
+    };
+
+    console.log(start)
     return (
-        <>
-            <div className='mt-3'>
-                <div className='relative'>
-                    <div className='grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-4 gap-x-6 gap-y-10 mt-8 max-w-5xl mx-auto transform transition-transform duration-1000 ease-linear'>
-                        {products &&
-                            products.slice(start, end).map((item, index) => (
-                                <div key={index} className='group relative hover:cursor-pointer ' >
-                                    <Image
-                                        src="/image6.jpg"
-                                        alt={item.name}
-                                        width={250}
-                                        height={250}
-                                        className="rounded-md"
-                                        onClick={() => handleLink(item.id)}
-                                    />
-                                    <div className='p-2 flex justify-between' onClick={() => handleLink(item.id)}>
-                                        <p className='text-gray-700 text-sm'>{item.name}</p>
-                                        <p className='text-gray-500 text-sm'>$ {item.price}</p>
-                                    </div>
-                                    <div className='flex justify-between items-center mt-2'>
-                                        <button onClick={() => handleCart(item)} className='rounded-md border px-2 text-sm bg-blue-400 text-white mt-2 py-1 hover:bg-blue-600'>Add to cart</button>
-                                        <IoMdHeartEmpty size={24} className='hover:scale-110 transition-transform duration-150' />
-                                    </div>
+        <div className="mt-3 relative max-w-6xl mx-auto">
+            {/* Sliding Container */}
+            <div className='overflow-hidden px-4 md:px-0'>
+                <div
+                    className="flex transition-transform duration-700 ease-in-out gap-5"
+                    style={{ transform: `translateX(-${start * 50}%)` }} // Moves the cards smoothly
+                >
+                    {products.map((item, index) => (
+                        <div key={index} className="min-w-[47%] sm:min-w-[48%] md:min-w-[23%] border shadow-md rounded-md px-1 py-2">
+                            <div className='flex items-center justify-center'>
+                                <Image
+                                    src="/image6.jpg"
+                                    alt={item.name}
+                                    width={250}
+                                    height={250}
+                                    className="rounded-md"
+                                    onClick={() => handleLink(item)}
+                                />
+                            </div>
 
-
-
+                            <div className="p-2 flex flex-col md:flex-row md:justify-between text-xs sm:text-sm md:text-base hover:cursor-pointer" onClick={() => handleLink(item)}>
+                                <p className="text-gray-700 text-sm">{item.name}</p>
+                                <p className="text-gray-500 text-sm">$ {item.price}</p>
+                            </div>
+                            <div className="flex justify-between items-center p-2">
+                                <div>
+                                    <button
+                                        onClick={() => handleCart(item)}
+                                        className="rounded-md border w-20 text-xs sm:w-24 sm:text-sm bg-blue-400 text-white py-1 hover:bg-blue-600"
+                                    >
+                                        Add to cart
+                                    </button>
                                 </div>
-                            ))
-                        }
-                    </div>
-                    <div className='hidden lg:block'>
-                        <button className='absolute top-1/2 bg-slate-200 rounded-full p-2 left-2 transform -translate-y-1/2' onClick={handlePrev}>
-                            <IoArrowBackOutline size={24} />
-                        </button>
-                        <button className='absolute top-1/2 bg-slate-200 rounded-full p-2 right-2 transform -translate-y-1/2' onClick={handleNext}>
-                            <IoArrowForwardSharp size={24} />
-                        </button>
-                    </div>
-                </div>
-                <div className='flex items-center justify-center mt-8'>
-                    <button className='bg-slate-700 px-3 py-2 md:px-6 w-28 rounded-md my-4 md:my-8 text-white hover:bg-slate-800 transition-transform duration-75'>View all</button>
+                                <div>
+                                    <IoMdHeartEmpty size={24} className="hover:scale-110 transition-transform duration-150" />
+                                </div>
 
+
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
-        </>
-    )
-}
+            {/* Prev & Next Buttons */}
+            <div className="">
+                <button
+                    className="absolute top-1/2 bg-slate-200 rounded-full p-2 left-2 transform -translate-y-1/2"
+                    onClick={handlePrev}
+                >
+                    <IoArrowBackOutline size={24} />
+                </button>
+                <button
+                    className="absolute top-1/2 bg-slate-200 rounded-full p-2 right-2 transform -translate-y-1/2"
+                    onClick={handleNext}
+                >
+                    <IoArrowForwardSharp size={24} />
+                </button>
+            </div>
+        </div>
+    );
+};
 
-export default ProductList
+export default ProductList;

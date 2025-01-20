@@ -20,7 +20,7 @@ const Navbar = () => {
                     <div className="font-bold sm:text-lg md:text-xl">
                         <Link href='/'>Exclusive</Link>
                     </div>
-                    <ul className="hidden md:flex md:space-x-4 ">
+                    <ul className="hidden md:flex md:space-x-4 md:text-sm lg:text-base">
                         <li className="hover:border-b hover:border-blue-600">
                             <Link href='/'>Home</Link>
                         </li>
@@ -41,10 +41,10 @@ const Navbar = () => {
 
                         </li>
                         <li className="sm:hidden ">
-                            <CiSearch size={25} />
+                            <CiSearch size={20} />
                         </li>
                         <li>
-                            <FaRegHeart size={25} />
+                            <FaRegHeart size={20} />
                         </li>
                         <li>
                             <Link href='/cart'> <CartIcon /> </Link>
