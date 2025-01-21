@@ -1,5 +1,6 @@
 'use client';
 import useCart from '@/store/cartStore';
+import useWishlist from '@/store/wishlistStore';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -10,6 +11,7 @@ import { IoArrowBackOutline } from "react-icons/io5";
 
 const ProductList = ({ products }) => {
     const addToCart = useCart((state) => state.addCart);
+    const addwishlist = useWishlist((state) => state.addwishlist)
     const [start, setStart] = useState(0);
     const itemsPerPage = 4; // Show 4 items at a time
     const router = useRouter();
@@ -39,13 +41,26 @@ const ProductList = ({ products }) => {
             position: 'bottom-right',
         });
     };
-
+    const handleWishlist = (item) => {
+        const newItem = {
+            id: item.id,
+            name: item.name,
+            subcategory_id: item.subcategory_id,
+            price: item.price,
+            description: item.description,
+            quantity: 1,
+        };
+        addwishlist(newItem);
+        toast.success(`${item.name} added to wishlist successfully`, {
+            duration: 4000,
+            position: 'bottom-right',
+        });
+    };
     const handleLink = (item) => {
         const queryString = new URLSearchParams(item).toString();
         router.push(`/product/${item.id}?${queryString}`);
     };
 
-    console.log(start)
     return (
         <div className="mt-3 relative max-w-6xl mx-auto">
             {/* Sliding Container */}
@@ -81,7 +96,7 @@ const ProductList = ({ products }) => {
                                     </button>
                                 </div>
                                 <div>
-                                    <IoMdHeartEmpty size={24} className="hover:scale-110 transition-transform duration-150" />
+                                    <IoMdHeartEmpty size={24} className="hover:scale-110 transition-transform duration-150" onClick={() => handleWishlist(item)} />
                                 </div>
 
 

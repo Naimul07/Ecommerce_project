@@ -38,7 +38,7 @@ const Imageslider = () => {
   }
   return (
     <>
-      <div className="">
+      <div className="px-1 sm:px-0">
         <div className="relative overflow-hidden">
           {
             slides.map((slide, index) => (

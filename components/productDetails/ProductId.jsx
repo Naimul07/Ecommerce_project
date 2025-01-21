@@ -9,15 +9,18 @@ import {
 } from "@/components/ui/accordion"
 import useCart from "@/store/cartStore";
 import toast from "react-hot-toast";
+import useWishlist from "@/store/wishlistStore";
 
 const ProductId = ({ product }) => {
   const cart = useCart((state) => state.cart)
   const addCart = useCart((state) => state.addCart);
+  const addwishlist = useWishlist((state) => state.addwishlist)
   const [sizet, setSizet] = useState("");
   const [color, setColor] = useState("");
   const [count, setCount] = useState(1);
   function updateStore() {
     useCart.persist.rehydrate();
+    useWishlist.persist.rehydrate();
   }
   useEffect(() => {
     document.addEventListener("visibilitychange", updateStore);
@@ -28,7 +31,20 @@ const ProductId = ({ product }) => {
       window.removeEventListener("focus", updateStore);
     }
   }, []);
-  
+
+  function addToWishlist(items) {
+    const item = {
+      id: items.id,
+      name: items.name,
+      subcategory_id: items.subcategory_id,
+      price: items.price,
+      description: items.description,
+      quantity: count,
+    }
+    addwishlist(item);
+    toast.success('item added to wishlist');
+  }
+
   function addToCart(items) {
     const item = {
       id: items.id,
@@ -112,7 +128,7 @@ const ProductId = ({ product }) => {
         <div>
           <button className="border px-4 rounded-lg py-2 text-white bg-slate-500 hover:bg-slate-700" onClick={() => addToCart(product)}>Add to cart</button>
         </div>
-        <div><IoMdHeartEmpty size={28} /> </div>
+        <div onClick={()=>addToWishlist(product)}><IoMdHeartEmpty size={28} className="hover:scale-110 transition-transform duration-150" /> </div>
       </div>
 
 
