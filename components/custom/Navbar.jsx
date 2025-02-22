@@ -78,7 +78,7 @@ const Navbar = () => {
                         onClick={closeSidebar}
                     />
                     <div
-                        className="fixed top-0 left-0 h-full w-3/4 sm:w-1/2 bg-white z-40 p-4"
+                        className="fixed top-0 left-0 h-full w-3/5 sm:w-1/2 bg-white z-40 p-4"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <Sidebar />

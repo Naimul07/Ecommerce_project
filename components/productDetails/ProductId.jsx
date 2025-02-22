@@ -64,7 +64,7 @@ const ProductId = ({ product }) => {
     <div>
       <div>
         <h2 className='font-semibold first-letter:capitalize text-2xl'>{product.name}</h2>
-        <h3 className={`${product.stock_quantity > 0 ? 'text-green-600 text-sm my-1 font-medium' : 'text-sm my-1 font-medium text-red-200'}`}>{product.stock_quantity > 0 ? 'In Stock' : 'Stocked out'}</h3>
+        <h3 className={`${product.stock_quantity > 0 ? 'text-green-600 text-sm my-1 font-medium' : 'text-sm my-1 font-medium text-green-600'}`}>{product.stock_quantity > 0 ? 'In Stock' : 'In Stock'}</h3>
         <h2 className='font-semibold text-xl text-gray-800 my-2'>$ {product.price}</h2>
       </div>
       <div className='mb-4'>
