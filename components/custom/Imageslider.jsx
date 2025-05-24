@@ -8,23 +8,30 @@ const Imageslider = () => {
   const slides = [
     {
       id: 1,
-      image: '/image4.jpg', // Replace with your image path
-      title: 'iPhone 14 Series',
-      subtitle: 'Up to 10% off Voucher',
+      image: '/cover1.jpg', // Replace with your image path
+      title: '',
+      subtitle: '',
       link: '#',
     },
     {
       id: 2,
-      image: '/image5.jpg',
-      title: 'Samsung Galaxy S23',
-      subtitle: 'Grab the Best Deals',
+      image: '/cover2.jpg',
+      title: '',
+      subtitle: '',
       link: '#',
     },
     {
       id: 3,
-      image: '/image3.jpg',
-      title: 'Google Pixel 7 Pro',
-      subtitle: 'Up to 15% off',
+      image: '/cover3.jpg',
+      title: '',
+      subtitle: '',
+      link: '#',
+    },
+    {
+      id: 4,
+      image: '/cover4.jpg',
+      title: '',
+      subtitle: '',
       link: '#',
     },
   ];
@@ -56,7 +63,7 @@ const Imageslider = () => {
                     <p className="text-lg md:text-xl">
                       {slide.subtitle}
                     </p>
-                    <Link href='' className="inline-block mt-4 text-white border-b-2 border-white hover:text-gray-300 transition">
+                    <Link href='' className="inline-block mt-4 text-blue-900 border-b-2 border-blue absolute bottom-3 right-3 hover:text-gray-300 transition">
                       Shop Now →
                     </Link>
                   </div>
