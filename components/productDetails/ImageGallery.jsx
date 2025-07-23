@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-const ImageGallery = ({ image }) => {
+const ImageGallery = ({ image,mainImage }) => {
     return (
         <div>
             <div className='flex space-x-8 items-center'>
@@ -25,7 +25,7 @@ const ImageGallery = ({ image }) => {
                 </div>
 
                 <div className='flex items-center justify-center'>
-                    <Image src='/image6.jpg' width={400} height={300} className='rounded-md' alt='image'/>
+                    <Image src={mainImage} width={400} height={300} className='rounded-md' alt='image'/>
 
                 </div>
             </div>

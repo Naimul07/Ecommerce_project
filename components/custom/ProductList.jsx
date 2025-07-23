@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
-import { IoMdHeartEmpty } from "react-icons/io";
+import { IoMdCart, IoMdHeartEmpty } from "react-icons/io";
 import { IoArrowForwardSharp } from "react-icons/io5";
 import { IoArrowBackOutline } from "react-icons/io5";
 
@@ -70,37 +70,42 @@ const ProductList = ({ products }) => {
                     style={{ transform: `translateX(-${start * 50}%)` }} // Moves the cards smoothly
                 >
                     {products.map((item, index) => (
-                        <div key={index} className="min-w-[47%] sm:min-w-[48%] md:min-w-[23%] border shadow-md rounded-md px-1 py-2">
+                        <div key={index} className="min-w-[50%] sm:min-w-[50%] md:min-w-[33%] lg:min-w-[24%] border shadow-md rounded-md px-1 py-2">
                             <div className='flex items-center justify-center'>
                                 <Image
-                                    src="/image6.jpg"
+                                    src={item.src}
                                     alt={item.name}
                                     width={250}
                                     height={250}
-                                    className="rounded-md"
+                                    className="rounded-xl object-cover w-full h-96"
                                     onClick={() => handleLink(item)}
                                 />
                             </div>
 
-                            <div className="p-2 flex flex-col md:flex-row md:justify-between text-xs sm:text-sm md:text-base hover:cursor-pointer" onClick={() => handleLink(item)}>
+                            <div className="my-3 px-2 flex flex-row justify-between gap-1 text-sm text-gray-700 cursor-pointer" onClick={() => handleLink(item)}>
                                 <p className="text-gray-700 text-sm">{item.name}</p>
-                                <p className="text-gray-500 text-sm">$ {item.price}</p>
+                                <p className="text-gray-500 text-sm">৳ {item.price}</p>
                             </div>
-                            <div className="flex justify-between items-center p-2">
-                                <div>
-                                    <button
-                                        onClick={() => handleCart(item)}
-                                        className="rounded-md border w-20 text-xs sm:w-24 sm:text-sm bg-blue-400 text-white py-1 hover:bg-blue-600"
-                                    >
-                                        Add to cart
-                                    </button>
-                                </div>
-                                <div>
-                                    <IoMdHeartEmpty size={24} className="hover:scale-110 transition-transform duration-150" onClick={() => handleWishlist(item)} />
-                                </div>
+                            <div className="flex justify-between items-center p-2 gap-2">
+                                {/* Add to Cart Button */}
+                                <button
+                                    onClick={() => handleCart(item)}
+                                    className="flex items-center justify-center gap-1 px-3 py-2 text-xs font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600 active:scale-95 transition"
+                                >
+                                    <IoMdCart className="text-xs" />
+                                    Add to Cart
+                                </button>
 
-
+                                {/* Favourite Button */}
+                                <button
+                                    onClick={() => handleWishlist(item)}
+                                    className="flex items-center justify-center gap-1 px-4 py-2 text-xs font-medium text-blue-500 border-2 border-blue-500 rounded-md hover:bg-blue-500 hover:text-white active:scale-95 transition"
+                                >
+                                    <IoMdHeartEmpty className="text-xs" />
+                                    Favourite
+                                </button>
                             </div>
+
                         </div>
                     ))}
                 </div>

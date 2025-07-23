@@ -15,7 +15,7 @@ const ProductDetails = () => {
     subcategory_id: searchParams.get('subcategory_id'),
     description: searchParams.get('description'),
     images: JSON.parse(searchParams.get('images') || '[]'),
-    mainImage: searchParams.get('mainImage'),
+    mainImage: searchParams.get('src'),
   };
 
   if (!product.id) {

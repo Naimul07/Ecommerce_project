@@ -100,7 +100,7 @@ const CartPage = () => {
 
                     <td className="py-6">
                       <div className="flex items-center justify-center gap-1 sm:gap-6">
-                        <Image src='/image6.jpg' alt={product.name} width={40} height={40} className="rounded-md" />
+                        <Image src={product.src} alt={product.name} width={40} height={40} className="rounded-md" />
                         <div className="">{product.name} </div>
 
                       </div>

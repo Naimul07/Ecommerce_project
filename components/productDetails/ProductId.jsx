@@ -74,7 +74,7 @@ const ProductId = ({ product }) => {
       <div>
         <div className="my-6">
           <h1 className="capitalize font-semibold my-2 text-lg">product description</h1>
-          <p className="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam temporibus dignissimos quos sequi molestias atque dolorum repellendus, quibusdam rem voluptatum, nobis eum nisi a! Voluptas adipisci fuga praesentium aliquid unde.</p>
+          <p className="text-justify">{product.description}</p>
         </div>
 
         <div>
@@ -94,7 +94,7 @@ const ProductId = ({ product }) => {
           <div className='flex items-center space-x-3 '>
             <h2 className=''>Size :</h2>
             {
-              ['sm', 'md', 'lg', 'xl', 'xxl'].map((size, index) => (
+              ['4/64', '4/128', '6/128', '8/128', '12/256'].map((size, index) => (
 
                 <button key={index} className={`border-2 border-slate-400 px-3 rounded-md text-slate-500  hover:bg-slate-500 hover:border-white hover:text-white ${sizet === size ? 'bg-slate-500 text-white' : ''}`} onClick={() => setSizet(size)}>{size}</button>
 
