@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from './Sidebar'
 import Imageslider from './Imageslider'
+import ImageSlider1 from './ImageSlider1'
 
 const Hero = () => {
     return (
@@ -10,8 +11,8 @@ const Hero = () => {
                     <Sidebar/>
                     
                 </div>
-                <div className='col-span-4 md:col-span-3'>
-                    <Imageslider/>
+                <div className='col-span-4 md:col-span-3 w-full h-full'>
+                    <ImageSlider1/>
                 </div>
             </div>
         </>

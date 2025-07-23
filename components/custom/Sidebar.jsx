@@ -2,19 +2,48 @@
 import Link from "next/link";
 import { useState } from "react";
 import { RiArrowDropRightLine, RiArrowDropDownLine } from "react-icons/ri";
-import { FaTshirt, FaLaptop, FaRunning, FaHome, FaBaby, FaCartPlus, FaHeartbeat, FaPills } from "react-icons/fa";
+import { CiHeadphones, CiLaptop, CiMobile1, CiMonitor } from "react-icons/ci";
+import { IoBatteryChargingOutline, IoTabletPortraitOutline, IoWatchOutline } from "react-icons/io5";
+import { FaShieldAlt } from "react-icons/fa";
+import { MdMouse } from "react-icons/md";
 
 const Sidebar = () => {
   const categories = [
-    { name: "Woman’s Fashion", icon: <FaTshirt />, subCategories: ["Dresses", "Tops", "Shoes"] },
-    { name: "Men’s Fashion", icon: <FaTshirt />, subCategories: ["Shirts", "Pants", "Shoes"] },
-    { name: "Electronics", icon: <FaLaptop />, subCategories: ["Mobile Phones", "Laptops", "Accessories"] },
-    { name: "Home & Lifestyle", icon: <FaHome />, subCategories: ["Furniture", "Decor", "Kitchen"] },
-    { name: "Sports & Outdoor", icon: <FaRunning />, subCategories: ["Fitness", "Camping", "Footwear"] },
-    { name: "Baby’s & Toys", icon: <FaBaby />, subCategories: ["Clothing", "Toys", "Baby Care"] },
-    { name: "Groceries & Pets", icon: <FaCartPlus />, subCategories: ["Food", "Pet Supplies"] },
-    { name: "Health & Beauty", icon: <FaHeartbeat />, subCategories: ["Skincare", "Makeup", "Wellness"] },
-    { name: "Medicine", icon: <FaPills />, subCategories: ["Prescription", "Over-the-Counter"] },
+    { name: "Laptop", icon: <CiLaptop />, subCategories: ["Asus", "Hp", "Macbook"] },
+    { name: "Moblie", icon: <CiMobile1 />, subCategories: ["iphone", "Samsung", "oppo"] },
+    { name: "Headphones", icon: <CiHeadphones />, subCategories: ["redmi", "apple", "lenovo"] },
+    { name: "Tablet", icon: <IoTabletPortraitOutline />, subCategories: ["Ipad", "Samsung", "redmi"] },
+    { name: "Monitor", icon: <CiMonitor />, subCategories: ["Hp", "Walton", "veqo"] },
+    { name: "Power & Accessories", icon: <IoBatteryChargingOutline />, subCategories: ["Power Banks", " Chargers & Adapters", "Extension Cords", "Batteries (Rechargeable)", "Wireless Chargers"] },
+    {
+      name: "Fitness & Wearable", icon: <IoWatchOutline />, subCategories: ["Smartwatches",
+
+        "Fitness Bands",
+
+        "Heart Rate Monitors",
+
+        "Smart Rings"]
+    },
+    {
+      name: "Peripherals", icon: <MdMouse />, subCategories: ["Keyboards",
+
+        "Mice",
+
+        "Printers & Scanners",
+
+        "Webcams"]
+    },
+    {
+      name: "Cover & Glass", icon: <FaShieldAlt />, subCategories: ["Phone Cases",
+
+        "Tablet Covers",
+
+        "Screen Protectors",
+
+        "Camera Lens Protectors",
+
+        "Laptop Skins"]
+    },
   ];
 
   const [open, setOpen] = useState(null);
@@ -31,7 +60,7 @@ const Sidebar = () => {
             <div>
               <div
                 className="flex justify-between items-center text-sm lg:text-base cursor-pointer p-2 bg-white rounded-lg hover:bg-gray-200 transition"
-                 onClick={()=>handleClick(index)}
+                onClick={() => handleClick(index)}
               >
                 <span className="text-gray-800 font-medium flex items-center space-x-2">
                   <span>{category.icon}</span>
