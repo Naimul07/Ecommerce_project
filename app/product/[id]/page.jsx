@@ -21,12 +21,13 @@ const ProductDetails = () => {
   if (!product.id) {
     return <div className="text-center text-gray-500">Product not found</div>;
   }
+  
 
   return (
     <div className="pt-16 container mx-auto px-4">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         <div className="flex justify-center items-center w-full mb-6">
-          <ImageGallery images={product.images} mainImage={product.mainImage} />
+          <ImageGallery mainImage={product.mainImage} />
         </div>
         <div>
           <ProductId product={product} />

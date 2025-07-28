@@ -3,10 +3,10 @@ import { useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 const ImageSlider1 = () => {
   const [current, setCurrent] = useState(1);
-  const images = [
+  const images = [ 
+    '/cover4.jpg',
     '/cover1.jpg',
     '/cover2.jpg',
-    '/cover4.jpg'
   ]
   const prevSlide = () => {
     setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1))
@@ -26,16 +26,16 @@ const ImageSlider1 = () => {
           </div>
         ))}
       </div>
-      <div className="absolute top-1/2 w-full flex justify-between px-4 -translate-y-1/2 z-10">
-        <button onClick={prevSlide} className="text-white font-extrabold text-xl"><IoIosArrowBack /></button>
-        <button onClick={nextSlide} className="text-white font-extrabold text-xl"><IoIosArrowForward /></button>
+      <div className="absolute top-1/2 w-full flex justify-between px-4 -translate-y-1/2 z-5">
+        <button onClick={prevSlide} className="text-black bg-white rounded-full font-extrabold p-2 text-xl"><IoIosArrowBack /></button>
+        <button onClick={nextSlide} className="text-black bg-white rounded-full font-extrabold p-2 text-xl"><IoIosArrowForward /></button>
       </div>
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 py-3 flex gap-2 z-10">
         {images.map((_, idx) => (
           <div
             key={idx}
             onClick={() => setCurrent(idx)}
-            className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${current === idx ? 'bg-white' : 'bg-gray-400'
+            className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${current === idx ? 'bg-sky-900 border-2 border-white' : 'bg-gray-400'
               }`}
           ></div>
         ))}

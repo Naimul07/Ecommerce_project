@@ -66,8 +66,8 @@ const ProductList = ({ products }) => {
             {/* Sliding Container */}
             <div className='overflow-hidden px-4 md:px-0'>
                 <div
-                    className="flex transition-transform duration-700 ease-in-out gap-5"
-                    style={{ transform: `translateX(-${start * 50}%)` }} // Moves the cards smoothly
+                    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 transition-transform duration-700 ease-in-out gap-5"
+                    style={{ transform: `translateX(-${start * 100}%)` }} // Moves the cards smoothly
                 >
                     {products.map((item, index) => (
                         <div key={index} className="min-w-[50%] sm:min-w-[50%] md:min-w-[33%] lg:min-w-[24%] border shadow-md rounded-md px-1 py-2">
@@ -111,7 +111,7 @@ const ProductList = ({ products }) => {
                 </div>
             </div>
             {/* Prev & Next Buttons */}
-            <div className="">
+           {/*  <div className="">
                 <button
                     className="absolute top-1/2 bg-slate-200 rounded-full p-2 left-2 transform -translate-y-1/2"
                     onClick={handlePrev}
@@ -124,7 +124,7 @@ const ProductList = ({ products }) => {
                 >
                     <IoArrowForwardSharp size={24} />
                 </button>
-            </div>
+            </div> */}
         </div>
     );
 };
