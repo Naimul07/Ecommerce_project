@@ -6,7 +6,7 @@ const ImageSlider1 = () => {
   const images = [ 
     '/cover4.jpg',
     '/cover1.jpg',
-    '/cover2.jpg',
+    '/image.png',
   ]
   const prevSlide = () => {
     setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1))

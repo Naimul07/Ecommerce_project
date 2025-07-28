@@ -60,12 +60,12 @@ const Navbar = () => {
                         <li>
                             <Link href='/cart'> <CartIcon /> </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Avatar>
                                 <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                                 <AvatarFallback>CN</AvatarFallback>
                             </Avatar>
-                        </li>
+                        </li> */}
                     </ul>
                 </nav>
             </div>
