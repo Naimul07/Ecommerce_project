@@ -38,11 +38,11 @@ const Navbar = () => {
                             <Link href='/'>Home</Link>
                         </li>
                         <li className="hover:border-b hover:border-blue-600">
-                            <Link href='/'>Contact</Link>
+                            <Link href='#footer'>Contact</Link>
                         </li>
-                        <li className="hover:border-b hover:border-blue-600">
+                        {/* <li className="hover:border-b hover:border-blue-600">
                             <Link href='/'>About</Link>
-                        </li>
+                        </li> */}
                         <li className="hover:border-b hover:border-blue-600">
                             <Link href='/login'>SignUp</Link>
                         </li>
